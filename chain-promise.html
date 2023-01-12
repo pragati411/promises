@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  const a = async () => {
+    return new Promise((resolve, reject) => {
+      reject("pragati");
+    });
+  };
+
+  const b = async () => {
+    return new Promise((resolve, reject) => {
+      resolve("satna");
+    });
+  };
+  const c = async () => {
+    return new Promise((resolve, reject) => {
+      resolve("mp");
+    });
+  };
+  const d = async () => {
+    return new Promise((resolve, reject) => {
+      resolve("india");
+    });
+  };
+
+  const e = async () => {
+    return new Promise((resolve, reject) => {
+      resolve("shukla");
+    });
+  };
+  const runPromises = async () => {
+    const aResponse = await a().catch((err) => "not found");
+    console.log(aResponse);
+    if (!aResponse) {
+      console.log("a failed");
+      return "a failed";
+    }
+
+    const bResponse = await b().catch((err) => "not found");
+    if (!bResponse) {
+      console.log("b failed");
+      return "b failed";
+    }
+
+    const cResponse = await c().catch((err) => "not found");
+    if (!cResponse) {
+      console.log("c failed");
+      return "c failed";
+    }
+
+    const dResponse = await d().catch((err) => "not found");
+    if (!dResponse) {
+      console.log("d failed");
+      return "d failed";
+    }
+
+    const eResponse = await e().catch((err) => "not found");
+    if (!eResponse) {
+      console.log("e failed");
+      return "e failed";
+    }
+  };
+
+  //   runPromises();
+
+  const promiseAll = async () => {
+    const results = await Promise.all([a(), b(), c(), d(), e()]).catch(
+      (err) => {
+        console.log(err);
+        return null;
+      }
+    );
+
+    console.log(results);
+    if (!results) {
+      return null;
+    }
+
+    return results;
+  };
+
+  //   promiseAll();
+
+  //
+
+  const promiseany = async () => {
+    const results = await Promise.any([a(), b(), c(), d(), e()]).catch(
+      (err) => {
+        console.log(err);
+        return null;
+      }
+    );
+
+    console.log(results);
+    if (!results) {
+      return null;
+    }
+
+    return results;
+  };
+
+  //   promiseany();
+
+  const promiseallSettled = async () => {
+    const results = await Promise.allSettled([a(), b(), c(), d(), e()]).catch(
+      (err) => {
+        console.log(err);
+        return null;
+      }
+    );
+
+    console.log(results);
+    if (!results) {
+      return null;
+    }
+
+    return results;
+  };
+
+  promiseallSettled();
+</script>
